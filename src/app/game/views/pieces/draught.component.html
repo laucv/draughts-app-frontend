@@ -1,0 +1,6 @@
+<div *ngIf="draught !== null" class="divPiece">
+  <img *ngIf="draught.getColor() === RED" src="./assets/images/red_draught.png"
+       class="piece" alt="Red Draught">
+  <img *ngIf="draught.getColor() === BLACK" src="./assets/images/black_draught.png"
+       class="piece" alt="Black Draught">
+</div>

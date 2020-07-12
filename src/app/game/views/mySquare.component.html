@@ -1,0 +1,15 @@
+<div [class.playable]="square.getRow()%2 !== square.getColumn()%2"
+     [class.notplayable]="square.getRow()%2 === square.getColumn()%2"
+     [class.highlight]="square.isSelected()">
+  <div (click)="userMoves()" *ngIf="square.getRow()%2 !== square.getColumn()%2">
+    <pawn
+      *ngIf="square.getPieceType() === 'n' || square.getPieceType() === 'r'"
+      [pawn]="square.getPiece()"></pawn>
+    <draught
+      *ngIf="square.getPieceType() === 'N' || square.getPieceType() === 'R'"
+      [draught]="square.getPiece()"></draught>
+    <img *ngIf="square.getPieceType() === ''"
+         src="../../../assets/images/noPiece.png"
+         class="noPawn" alt="Empty square">
+  </div>
+</div>

@@ -1,0 +1,18 @@
+main{
+  margin-top: 1.5rem;
+}
+mat-card {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+}
+.menuButton {
+  position: absolute;
+  right: 10px;
+  border: 3px;
+  padding: 10px;
+}
+.draughs{
+  color: white;
+  text-decoration: none;
+}

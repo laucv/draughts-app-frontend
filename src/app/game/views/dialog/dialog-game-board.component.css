@@ -1,0 +1,17 @@
+.board {
+  height: 400px;
+  width: 400px;
+  margin-left: 20%;
+  border: 1px solid black;
+}
+
+.fila{
+  height: 12.5%;
+  width: 100%;
+  background-color: #FDFFD3;
+}
+
+.turn{
+  width: 5%;
+  height: 5%;
+}

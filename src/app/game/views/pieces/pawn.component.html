@@ -1,0 +1,6 @@
+<div *ngIf="pawn !== null" class="divPiece">
+  <img *ngIf="pawn.getColor() === RED" src="./assets/images/red.png"
+       class="piece" alt="Red Pawn">
+  <img *ngIf="pawn.getColor() === BLACK" src="./assets/images/black.png"
+       class="piece" alt="Black Pawn">
+</div>

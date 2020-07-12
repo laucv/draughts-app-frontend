@@ -1,0 +1,9 @@
+<h1>Welcome to draughts</h1>
+<div *ngIf="!userService.isUserActive()" >
+<button mat-raised-button routerLink="/signup"><span class="signup">Sign up</span></button>
+<button mat-raised-button routerLink="/login"><span class="login">Log in</span></button>
+</div>
+<div *ngIf="userService.isUserActive()" >
+  <button mat-raised-button routerLink="/playGame"><span class="openGame">Play!</span></button>
+  <button mat-raised-button routerLink="/" (click)="userService.logout()"><span class="logout">Log out!</span></button>
+</div>

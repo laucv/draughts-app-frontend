@@ -1,0 +1,19 @@
+.playable {
+  height: 100%;
+  width: 12.5%;
+  display: inline-block;
+  background-color: #256f80;
+}
+.notplayable {
+  height: 100%;
+  width: 12.5%;
+  display: inline-block;
+  background-color: #FDFFD3;
+}
+.noPawn {
+  width: 100%;
+  height: 100%;
+}
+.highlight{
+  background-color: yellow;
+}

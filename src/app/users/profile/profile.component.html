@@ -1,0 +1,23 @@
+<h1>{{user.username}}'s Profile</h1>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput type="text" [(ngModel)]="username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="email" disabled value="{{email}}">
+  </mat-form-field>
+  <p *ngIf="message != ''">{{message}}</p>
+  <button mat-raised-button color='primary' (click)="updateProfile()">Update profile</button>
+  <button mat-raised-button color='warn' (click)="deleteUser()">Delete account</button>
+  <div *ngIf="confirmDelete">
+    <p>Are you sure?</p>
+    <button mat-raised-button color='primary' (click)="undo()">No</button>
+    <button mat-raised-button color='warn' (click)="deleteAccount()">Yes</button>
+  </div>
+  <br>
+  <div>
+    <button mat-raised-button color='accent' (click)="logout()">Logout</button>
+  </div>
+</mat-card>
