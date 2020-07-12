@@ -1,4 +1,3 @@
-const PATH_PROJECT = '/dist/draughts';
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -6,9 +5,9 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.static(__dirname + PATH_PROJECT));
+app.use(express.static(__dirname + './dist/draughts'));
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, PATH_PROJECT, index.html)));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, './dist/draughts/index.html')));
 
 
 server.listen(process.env.PORT || 8081, () => {
