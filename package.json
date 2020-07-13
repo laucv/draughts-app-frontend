@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
     "copy-webpack-plugin": "^6.0.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mime": "^2.4.6",
     "rxjs": "~6.5.4",
