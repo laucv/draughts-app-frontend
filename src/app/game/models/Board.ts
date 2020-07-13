@@ -85,8 +85,8 @@ export class Board {
     return availablePiecesToJump;
   }
 
-  checkDiagonals(availablePiecesToJump: Array<Coordinate>, color: Color, coordinate: Coordinate) {
-    if (color === Color.RED && coordinate.getRow() > Board.MINIMUM_LIMIT_TO_JUMP) {
+    checkDiagonals(availablePiecesToJump: Array<Coordinate>, color: Color, coordinate: Coordinate) {
+    if (color === Color.RED && coordinate.getRow() > Board.MINIMUM_LIMIT_TO_JUMP || this.getPiece(coordinate).getCode() === 'N') {
       if (coordinate.getColumn() < Board.MAXIMUM_LIMIT_TO_JUMP && this.jumpIsPossible(coordinate, DirectionClass.SE)) {
         availablePiecesToJump.push(coordinate);
       }
@@ -94,7 +94,7 @@ export class Board {
         availablePiecesToJump.push(coordinate);
       }
     }
-    if (color === Color.BLACK && coordinate.getRow() < Board.MAXIMUM_LIMIT_TO_JUMP) {
+    if (color === Color.BLACK && coordinate.getRow() < Board.MAXIMUM_LIMIT_TO_JUMP|| this.getPiece(coordinate).getCode() === 'R') {
       if (coordinate.getColumn() > Board.MINIMUM_LIMIT_TO_JUMP && this.jumpIsPossible(coordinate, DirectionClass.NW)) {
         availablePiecesToJump.push(coordinate);
       }
