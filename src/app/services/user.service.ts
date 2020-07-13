@@ -2,28 +2,29 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserModel} from "../models/User.model";
 import {Observable} from "rxjs";
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class UserService {
 
-  private url: string = 'http://localhost:4600';
+  static API_END_POINT = environment.API;
 
   constructor(private http: HttpClient) {
   }
 
   getUsers(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(this.url + '/users');
+    return this.http.get<UserModel[]>(UserService.API_END_POINT + '/users');
   }
 
   login(email: string, password: string): Observable<string> {
     const user = '{' +
       '"email": "' + email + '", ' +
       '"password":"' + password + '"}';
-    return this.http.post<string>(this.url + '/users/login', JSON.parse(user));
+    return this.http.post<string>(UserService.API_END_POINT + '/users/login', JSON.parse(user));
   }
 
   getUserProfile(): Observable<UserModel> {
-    return this.http.get<UserModel>(this.url + '/users/profile', {
+    return this.http.get<UserModel>(UserService.API_END_POINT + '/users/profile', {
       headers: this.getHeaders()
     });
   }
@@ -41,7 +42,7 @@ export class UserService {
       '"username": "' + username + '", ' +
       '"email": "' + email + '", ' +
       '"password":"' + password + '"}';
-    return this.http.post<UserModel>(this.url + '/users', JSON.parse(user));
+    return this.http.post<UserModel>(UserService.API_END_POINT + '/users', JSON.parse(user));
   }
 
   saveToken(token: string) {
@@ -53,7 +54,7 @@ export class UserService {
   }
 
   deleteUser(): Observable<UserModel> {
-    return this.http.delete<UserModel>(this.url + '/users/profile', {
+    return this.http.delete<UserModel>(UserService.API_END_POINT + '/users/profile', {
       headers: this.getHeaders()
     });
   }
@@ -66,7 +67,7 @@ export class UserService {
     const user = '{' +
       '"username": "' + username + '"}';
 
-    return this.http.put<UserModel>(this.url + '/users/profile', JSON.parse(user), {
+    return this.http.put<UserModel>(UserService.API_END_POINT + '/users/profile', JSON.parse(user), {
       headers: this.getHeaders()
     });
   }
