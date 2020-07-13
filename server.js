@@ -1,11 +1,21 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-
+const mime = require('mime');
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.static(__dirname + './dist/draughts'));
+const setHeadersOnStatic = (res, path, stat) => {
+  const type = mime.getType(path);
+  res.set('content-type', type);
+}
+
+const staticOptions = {
+  setHeaders: setHeadersOnStatic
+}
+
+
+app.use(express.static(path.join(__dirname, './dist/draughts'), staticOptions));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, './dist/draughts/index.html')));
 
