@@ -8,24 +8,31 @@ import {environment} from '../../environments/environment';
 export class UserService {
 
   static API_END_POINT = environment.API;
+  private headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders();
+    this.setHeaders();
   }
 
   getUsers(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(UserService.API_END_POINT + '/users');
+    return this.http.get<UserModel[]>(UserService.API_END_POINT + '/users', {
+      headers: this.headers
+    });
   }
 
   login(email: string, password: string): Observable<string> {
     const user = '{' +
       '"email": "' + email + '", ' +
       '"password":"' + password + '"}';
-    return this.http.post<string>(UserService.API_END_POINT + '/users/login', JSON.parse(user));
+    return this.http.post<string>(UserService.API_END_POINT + '/users/login', JSON.parse(user), {
+      headers: this.headers
+    });
   }
 
   getUserProfile(): Observable<UserModel> {
     return this.http.get<UserModel>(UserService.API_END_POINT + '/users/profile', {
-      headers: this.getHeaders()
+      headers: this.headers
     });
   }
 
@@ -42,11 +49,14 @@ export class UserService {
       '"username": "' + username + '", ' +
       '"email": "' + email + '", ' +
       '"password":"' + password + '"}';
-    return this.http.post<UserModel>(UserService.API_END_POINT + '/users', JSON.parse(user));
+    return this.http.post<UserModel>(UserService.API_END_POINT + '/users', JSON.parse(user), {
+      headers: this.headers
+    });
   }
 
   saveToken(token: string) {
     window.sessionStorage.setItem('token', token);
+    this.setAuthTokenHeader();
   }
 
   getToken(): string {
@@ -55,12 +65,16 @@ export class UserService {
 
   deleteUser(): Observable<UserModel> {
     return this.http.delete<UserModel>(UserService.API_END_POINT + '/users/profile', {
-      headers: this.getHeaders()
+      headers: this.headers
     });
   }
 
-  getHeaders(): HttpHeaders {
-    return new HttpHeaders().set('auth-token', this.getToken());
+  setHeaders(): HttpHeaders {
+    return this.headers.set('Access-Control-Allow-Origin', '*');
+  }
+
+  setAuthTokenHeader(): HttpHeaders {
+    return this.headers.set('auth-token', this.getToken());
   }
 
   updateUser(username: string): Observable<UserModel> {
@@ -68,7 +82,7 @@ export class UserService {
       '"username": "' + username + '"}';
 
     return this.http.put<UserModel>(UserService.API_END_POINT + '/users/profile', JSON.parse(user), {
-      headers: this.getHeaders()
+      headers: this.headers
     });
   }
 

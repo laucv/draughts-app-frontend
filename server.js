@@ -14,14 +14,6 @@ const staticOptions = {
   setHeaders: setHeadersOnStatic
 }
 
-app.all('*', function(req, res, next) {
-     var origin = req.get('origin'); 
-     res.header('Access-Control-Allow-Origin', origin);
-     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-     res.header('Access-Control-Allow-Headers', 'Content-Type');
-     next();
-});
-
 app.use(express.static(path.join(__dirname, './dist/draughts'), staticOptions));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, './dist/draughts/index.html')));
