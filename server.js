@@ -7,17 +7,20 @@ const server = http.createServer(app);
 
 const setHeadersOnStatic = (res, path, stat) => {
   const type = mime.getType(path);
-  var origin = req.get('origin'); 
   res.set('content-type', type);
-  res.header('Access-Control-Allow-Origin', origin);
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
 }
 
 const staticOptions = {
   setHeaders: setHeadersOnStatic
 }
 
+app.all('*', function(req, res, next) {
+     var origin = req.get('origin'); 
+     res.header('Access-Control-Allow-Origin', origin);
+     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+     res.header('Access-Control-Allow-Headers', 'Content-Type');
+     next();
+});
 
 app.use(express.static(path.join(__dirname, './dist/draughts'), staticOptions));
 
