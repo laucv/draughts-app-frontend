@@ -22,8 +22,8 @@ export class OpenGame {
 
   selectGame(gameName: string, board: string){
     const dialogRef = this.dialog.open(DialogGameBoard, {
-      height: '600px',
-      width: '1500px',
+      height: '90%',
+      width: '80%',
       data: {gameName: gameName, board: board}
     });
 
