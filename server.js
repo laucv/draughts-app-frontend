@@ -7,6 +7,7 @@ const server = http.createServer(app);
 
 const setHeadersOnStatic = (res, path, stat) => {
   const type = mime.getType(path);
+  var origin = req.get('origin'); 
   res.set('content-type', type);
   res.header('Access-Control-Allow-Origin', origin);
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
