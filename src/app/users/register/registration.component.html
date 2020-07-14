@@ -1,15 +1,18 @@
 <mat-card>
-<mat-form-field>
-  <input matInput type="text" placeholder="username" [(ngModel)]="username">
-</mat-form-field>
-<mat-form-field>
-  <input matInput type="email" placeholder="email" [(ngModel)]="email">
-</mat-form-field>
-<mat-form-field>
-  <input matInput type="password" placeholder="password" [(ngModel)]="password">
-</mat-form-field>
-<mat-form-field>
-  <input matInput type="password" placeholder="repit password" [(ngModel)]="repetedPassword">
-</mat-form-field>
-<button mat-raised-button color='primary'(click)="register()">Register</button>
+  <form>
+    <mat-form-field>
+      <input matInput type="text" placeholder="username" [(ngModel)]="user.username" name="username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="email" [(ngModel)]="user.email" name="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" [(ngModel)]="user.password" name="password">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="repit password" [(ngModel)]="repetedPassword" name="repeatPassword">
+    </mat-form-field>
+    <p> {{message}} </p>
+    <button mat-raised-button color='primary' (click)="register()" type='submit'>Register</button>
+  </form>
 </mat-card>
